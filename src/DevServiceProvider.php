@@ -3,7 +3,6 @@
 namespace Streams\Dev;
 
 use Illuminate\Support\ServiceProvider;
-use Streams\Core\Support\Facades\Streams;
 
 class DevServiceProvider extends ServiceProvider
 {

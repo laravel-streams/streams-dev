@@ -1,6 +1,6 @@
 {
-    "name": "streams/cli",
-    "description": "The Laravel Streams CLI application interface.",
+    "name": "streams/dev",
+    "description": "The Laravel Streams developer companion.",
     "authors": [
         {
             "name": "Ryan Thompson",
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Streams\\Cli\\": "src/"
+            "Streams\\Dev\\": "src/"
         }
     },
     "config": {
@@ -18,7 +18,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Streams\\Cli\\CliServiceProvider"
+                "Streams\\Dev\\DevServiceProvider"
             ]
         }
     }
