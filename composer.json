@@ -1,0 +1,25 @@
+{
+    "name": "streams/cli",
+    "description": "The Laravel Streams CLI application interface.",
+    "authors": [
+        {
+            "name": "Ryan Thompson",
+            "email": "ryan@pyrocms.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Streams\\Cli\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Streams\\Cli\\CliServiceProvider"
+            ]
+        }
+    }
+}
