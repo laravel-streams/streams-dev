@@ -42,12 +42,11 @@ class DevServiceProvider extends ServiceProvider
         //     => public_path('vendor/streams/ui')
         // ], ['public']);
 
-        // if ($this->app->runningInConsole()) {
-        //     $this->commands([
-        //         \Streams\Dev\Console\StreamsMake::class,
-        //         \Streams\Dev\Console\StreamsDescribe::class,
-        //     ]);
-        // }
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Streams\Dev\Console\StreamsDescribe::class,
+            ]);
+        }
     }
 
     /**

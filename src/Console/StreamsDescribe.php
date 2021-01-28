@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
-use Streams\Core\Support\Facades\Streams;
 
 class StreamsDescribe extends Command
 {
@@ -20,7 +19,7 @@ class StreamsDescribe extends Command
      * @var string
      */
     protected $signature = 'streams:describe : Generate a stream describing the target data source.
-        {target : The database, table, or model to describe.}';
+        {target : The target within the source.}';
 
     public function handle()
     {
