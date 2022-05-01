@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Streams\Core\Support\Facades\Streams;
 
-class MakeEntry extends Command
+class MakeStream extends Command
 {
 
     /**
@@ -16,14 +16,14 @@ class MakeEntry extends Command
      *
      * @var string
      */
-    protected $signature = 'make:entry
-        {stream : The entry stream.}
+    protected $signature = 'make:stream
+        {id : The stream id.}
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';
 
     public function handle()
     {
-        $stream = Streams::make($this->argument('stream'));
+        $stream = Streams::make('core.streams');
 
         parse_str($this->argument('input'), $input);
 
@@ -73,10 +73,10 @@ class MakeEntry extends Command
         $this->info(json_encode($instance));
     }
 
-    protected function askForInput(Field $field, Collection $input, $prefix = null)
+    protected function askForInput(Field $field, Collection $input)
     {
-        $value = $this->ask($field->name(), $field->default($input->get($field->handle)));
+        $value = $field->input($this, $input);
 
-        $input->put($prefix . $field->handle, $value);
+        $input->put($field->handle, $value);
     }
 }
