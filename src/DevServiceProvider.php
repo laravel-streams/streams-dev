@@ -16,6 +16,7 @@ class DevServiceProvider extends ServiceProvider
                 \Streams\Dev\Console\MakeEntry::class,
                 \Streams\Dev\Console\MakeStream::class,
                 \Streams\Dev\Console\ListEntries::class,
+                \Streams\Dev\Console\ListStreams::class,
                 \Streams\Dev\Console\StreamsDescribe::class,
             ]);
         }

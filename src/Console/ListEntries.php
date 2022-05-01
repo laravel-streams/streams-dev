@@ -25,7 +25,7 @@ class ListEntries extends Command
         {--per-page=15 : Entries per page.}
         {--page= : Page to list.}';
 
-    public function handle()
+    public function handle($page = 0)
     {
         $stream = Streams::make($this->argument('stream'));
 
@@ -38,23 +38,20 @@ class ListEntries extends Command
             foreach ($query as $parameter) {
 
                 list($method, $parameters) = explode(':', $parameter);
-                
+
                 $criteria->{$method}(...explode(',', $parameters));
             }
         }
 
         $results = $criteria->paginate([
             'per_page' => $this->option('per-page'),
-            'page' => $this->option('page'),
+            'page' => $page ?: $this->option('page'),
         ]);
 
         $this->info('Total: ' . $results->total());
         $this->info('Per Page: ' . $results->perPage());
         $this->info('Last Page: ' . $results->lastPage());
         $this->info('Current Page: ' . $results->currentPage());
-
-        $this->info('First Page: ' . $results->url(1));
-        $this->info('Previous Page: ' . $results->previousPageUrl());
 
         $headers = [];
         $data = [];
@@ -64,20 +61,20 @@ class ListEntries extends Command
         });
 
         if ($columns = $this->option('columns')) {
-            $headers = array_intersect_key($headers, explode('|', $columns));
+            $headers = array_intersect_key($headers, explode(',', $columns));
         }
 
         $results->each(function ($entry) use (&$data, $headers) {
 
             $row = $entry->getAttributes();
 
-            foreach ($row as $key => $value) {
+            foreach ($row as &$value) {
 
                 if (is_string($value)) {
                     $value = Str::limit($value);
                 }
 
-                if (is_array($value)) {
+                if (is_array($value) || is_object($value)) {
                     $value = json_encode($value);
                 }
             }
@@ -88,5 +85,11 @@ class ListEntries extends Command
         });
 
         $this->table($headers, $data);
+
+        if ($results->currentPage() < $results->lastPage()) {
+            if ($this->confirm('Next Page?', true)) {
+                $this->handle($results->currentPage() + 1);
+            }
+        }
     }
 }
