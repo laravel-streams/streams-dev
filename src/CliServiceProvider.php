@@ -17,6 +17,8 @@ class CliServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Streams\Cli\Console\Commands\MakeEntry::class,
+                \Streams\Cli\Console\Commands\ShowEntry::class,
+                \Streams\Cli\Console\Commands\MakeStream::class,
                 \Streams\Cli\Console\Commands\ListEntries::class,
                 \Streams\Cli\Console\Commands\ListStreams::class,
                 //\Streams\Cli\Console\Commands\StreamsDescribe::class,
@@ -42,6 +44,7 @@ class CliServiceProvider extends ServiceProvider
     {
         $inputs = Config::get('streams.cli.input_types', [
             'string' => StringConsoleInput::class,
+            'slug' => StringConsoleInput::class,
             'object' => ObjectConsoleInput::class,
             'array' => ArrayConsoleInput::class,
         ]);

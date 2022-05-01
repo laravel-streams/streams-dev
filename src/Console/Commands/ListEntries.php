@@ -18,7 +18,7 @@ class ListEntries extends Command
     protected $signature = 'entries:list
         {stream : The stream to list entries from.}
         {--query= : Query constraints.}
-        {--columns= : Columns to display.}
+        {--show= : Fields to display.}
         {--per-page=15 : Entries per page.}
         {--page= : Page to list.}';
 
@@ -55,12 +55,12 @@ class ListEntries extends Command
         $headers = [];
         $data = [];
 
-        $stream->fields->each(function (Field $field) use (&$headers) {
-            $headers[] = $field->handle;
-        });
+        if ($show = $this->option('show')) {
+            $headers = explode(',', $show);
+        }
 
-        if ($columns = $this->option('columns')) {
-            $headers = array_intersect_key($headers, explode(',', $columns));
+        if (!$headers) {
+            $headers = $stream->fields->pluck('handle')->all();
         }
 
         $results->each(function ($entry) use (&$data, $headers) {

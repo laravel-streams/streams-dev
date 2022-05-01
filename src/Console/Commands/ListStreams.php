@@ -14,7 +14,7 @@ class ListStreams extends Command
      */
     protected $signature = 'streams:list
         {--query= : Query constraints.}
-        {--columns=id,name,description : Columns to display.}
+        {--show=id,name,description : Fields to display.}
         {--per-page=15 : Entries per page.}
         {--page= : Page to list.}';
 
@@ -22,10 +22,10 @@ class ListStreams extends Command
 
     public function handle()
     {
-        $this->call('streams:entries', [
+        $this->call('entries:list', [
             'stream' => 'core.streams',
             '--query' => $this->option('query'),
-            '--columns' => $this->option('columns'),
+            '--show' => $this->option('show'),
             '--per-page' => $this->option('per-page'),
             '--page' => $this->option('page'),
         ]);
