@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Streams\Core\Field\Field;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Streams\Cli\Console\MakeEntry;
 use Streams\Ui\Support\Facades\UI;
 use Streams\Cli\Console\MakeStream;
@@ -13,6 +14,9 @@ use Streams\Cli\Console\ListEntries;
 use Streams\Cli\Console\ListStreams;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Streams\Cli\Console\Inputs\ArrayConsoleInput;
+use Streams\Cli\Console\Inputs\ObjectConsoleInput;
+use Streams\Cli\Console\Inputs\StringConsoleInput;
 use Streams\Cli\Console\StreamsDescribe;
 use Streams\Core\Field\Types\ArrayFieldType;
 
@@ -35,59 +39,26 @@ class CliServiceProvider extends ServiceProvider
     {
         $this->registerInputs();
 
-        // ArrayFieldType::macro('input', function (Command $command, Collection $input) {
+        Field::macro('console', function () {
 
-        //     if (!$command->ask('Add [' . $this->handle . '] items?')) {
-        //         return $items = [];
-        //     }
+            if (!App::has("streams.cli.input_types.{$this->type}")) {
+                throw new \Exception("Missing CLI input [{$this->type}] required for field [{$this->handle}] in stream [{$this->stream->id}]");
+            }
 
-        //     while ($command->ask('Add another?', true)) {
-        //         $items[] = $command->ask($this->handle . '[]');
-        //     }
-
-        //     return $items;
-        // });
+            return App::make("streams.cli.input_types.{$this->type}", ['field' => $this]);
+        });
     }
 
     protected function registerInputs()
     {
-        $inputs = Config::get('streams.ui.input_types', []);
+        $inputs = Config::get('streams.cli.input_types', [
+            'string' => StringConsoleInput::class,
+            'object' => ObjectConsoleInput::class,
+            'array' => ArrayConsoleInput::class,
+        ]);
 
         foreach ($inputs as $abstract => $concrete) {
-            $this->app->bind("streams.ui.input_types.{$abstract}", $concrete);
+            $this->app->bind("streams.cli.input_types.{$abstract}", $concrete);
         }
-
-        Field::macro('input', function (array $attributes = []) {
-
-            $attributes = Arr::add($attributes, 'field', $this);
-
-            $this->input = $this->input ?: [
-                'type' => $this->type,
-            ];
-
-            $attributes = $attributes + (array) $this->input;
-
-            Arr::pull($attributes, 'type');
-
-            if (!isset($this->input['type'])) {
-                throw new \Exception("Missing input type for field [{$this->handle}] in stream [{$this->stream->id}]");
-            }
-dd($this->type);
-            $this->app->make("streams.ui.input_types.{$this->type}");
-            
-            // return $this->once(
-            //     $this->stream->id . $this->handle . 'input',
-            //     function () use ($attributes) {
-
-            //         Arr::pull($attributes, 'type');
-
-            //         if (!isset($this->input['type'])) {
-            //             throw new \Exception("Missing input type for field [{$this->handle}] in stream [{$this->stream->id}]");
-            //         }
-
-            //         return UI::make($this->input['type'], $attributes);
-            //     }
-            // );
-        });
     }
 }

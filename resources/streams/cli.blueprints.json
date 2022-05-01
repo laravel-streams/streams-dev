@@ -1,0 +1,18 @@
+{
+    "name": "Blueprints",
+    "config": {
+        "source": {
+            "path": "vendor/streams/cli/resources/streams/data/blueprints",
+            "format": "markdown"
+        },
+        "abstract": "Streams\\Core\\Entry\\Entry"
+    },
+    "fields": {
+        "handle": {
+            "type": "slug"
+        },
+        "body": {
+            "type": "string"
+        }
+    }
+}

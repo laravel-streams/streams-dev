@@ -8,8 +8,15 @@ use Illuminate\Support\Collection;
 
 class ConsoleInput
 {
-    public function ask(Command $command, Field $field, Collection $input)
+    public function __construct(public Field $field)
     {
-        return $command->ask($field->name(), $field->default($input->get($field->handle)));
+    }
+
+    public function ask(Command $command, Collection $input)
+    {
+        return $command->ask(
+            $this->field->name(),
+            $this->field->default($input->get($this->field->handle))
+        );
     }
 }

@@ -73,10 +73,10 @@ class MakeEntry extends Command
         $this->info(json_encode($instance));
     }
 
-    protected function askForInput(Field $field, Collection $input, $prefix = null)
+    protected function askForInput(Field $field, Collection $input)
     {
-        $value = $this->ask($field->name(), $field->default($input->get($field->handle)));
+        $value = $field->console()->ask($this, $input);
 
-        $input->put($prefix . $field->handle, $value);
+        $input->put($field->handle, $value);
     }
 }

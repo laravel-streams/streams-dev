@@ -7,6 +7,7 @@ use Streams\Core\Field\Field;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Streams\Core\Support\Facades\Streams;
+use Symfony\Component\Yaml\Yaml;
 
 class MakeStream extends Command
 {
@@ -70,12 +71,13 @@ class MakeStream extends Command
             return;
         }
 
+        $this->info(Yaml::dump(Arr::make($instance)));
         $this->info(json_encode($instance));
     }
 
     protected function askForInput(Field $field, Collection $input)
     {
-        $value = $field->input($this, $input);
+        $value = $field->console()->ask($this, $input);
 
         $input->put($field->handle, $value);
     }
