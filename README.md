@@ -1,1 +1,3 @@
-## Streams Dev
+## Streams CLI
+
+CLI Tooling for Laravel Streams.
