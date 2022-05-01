@@ -15,7 +15,7 @@ class ListEntries extends Command
      *
      * @var string
      */
-    protected $signature = 'streams:entries
+    protected $signature = 'entries:list
         {stream : The stream to list entries from.}
         {--query= : Query constraints.}
         {--columns= : Columns to display.}
