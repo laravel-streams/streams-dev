@@ -2,37 +2,13 @@
 
 namespace Streams\Dev;
 
+use Streams\Core\Stream\Stream;
+use Streams\Core\Stream\StreamManager;
 use Illuminate\Support\ServiceProvider;
 
 class DevServiceProvider extends ServiceProvider
 {
 
-    /**
-     * The class aliases.
-     *
-     * @var array
-     */
-    public $aliases = [];
-
-    /**
-     * The class bindings.
-     *
-     * @var array
-     */
-    public $bindings = [];
-
-    /**
-     * The singleton bindings.
-     *
-     * @var array
-     */
-    public $singletons = [];
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
     public function register()
     {
         // $this->mergeConfigFrom(__DIR__ . '/../resources/config/cp.php', 'streams.cp');
@@ -44,6 +20,7 @@ class DevServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                \Streams\Dev\Console\MakeEntry::class,
                 \Streams\Dev\Console\StreamsDescribe::class,
             ]);
         }
@@ -54,22 +31,14 @@ class DevServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Streams::register([
-        //     'handle' => 'dev.blueprints',
-        //     'source' => [
-        //         'path' => 'streams/dev/blueprints',
-        //         'format' => 'json',
-        //     ],
-        //     'config' => [
-        //         'prototype' => 'Streams\\Dev\\Blueprint\\Blueprint',
-        //     ],
-        //     'fields' => [
-        //         'template' => [],
-        //         'parent' => [
-        //             'type' => 'relationship',
-        //             'related' => 'cp.navigation',
-        //         ],
-        //     ],
-        // ]);
+        // StreamManager::macro('factory', function () {
+        //     return $this
+        //             ->make($id)
+        //             ->factory();
+        // });
+
+        // Stream::macro('factory', function () {
+
+        // });
     }
 }

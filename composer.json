@@ -1,6 +1,6 @@
 {
     "name": "streams/dev",
-    "description": "The Laravel Streams developer companion.",
+    "description": "Laravel Streams development tooling.",
     "authors": [
         {
             "name": "Ryan Thompson",
@@ -8,11 +8,16 @@
         }
     ],
     "require": {
-        "doctrine/dbal": "^3.0"
+        "doctrine/dbal": "^3.3"
     },
     "autoload": {
         "psr-4": {
             "Streams\\Dev\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Streams\\Dev\\Tests\\": "tests/"
         }
     },
     "config": {
