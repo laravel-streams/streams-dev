@@ -33,10 +33,6 @@ class MakeEntry extends Command
             $input = array_merge((array) $entry, $input);
         }
         
-        if (!$input) {
-            return $this->error('Truly, one cannot create something from nothing.');
-        }
-
         $messages = $stream->validator($input)->messages()->all();
 
         if ($messages) {
