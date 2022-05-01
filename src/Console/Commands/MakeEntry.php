@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Cli\Console;
+namespace Streams\Cli\Console\Commands;
 
 use Illuminate\Support\Arr;
 use Streams\Core\Field\Field;
@@ -16,10 +16,12 @@ class MakeEntry extends Command
      *
      * @var string
      */
-    protected $signature = 'entries:make : Make a stream entry.
+    protected $signature = 'streams:make
         {stream : The entry stream.}
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';
+
+    protected $description = 'Make a stream entry.';
 
     public function handle()
     {

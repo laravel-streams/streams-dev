@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Cli\Console;
+namespace Streams\Cli\Console\Commands;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -14,12 +14,14 @@ class StreamsDescribe extends Command
 {
 
     /**
-     * The name and signature of the console command.
+     * @inheritDoc
      *
      * @var string
      */
-    protected $signature = 'streams:describe : Generate a stream describing the target data source.
+    protected $signature = 'streams:describe
         {target : The target within the source.}';
+
+    protected $description = 'Generate a stream describing the target data source.';
 
     public function handle()
     {

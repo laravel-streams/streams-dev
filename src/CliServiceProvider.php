@@ -2,23 +2,13 @@
 
 namespace Streams\Cli;
 
-use Illuminate\Support\Arr;
 use Streams\Core\Field\Field;
-use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use Streams\Cli\Console\MakeEntry;
-use Streams\Ui\Support\Facades\UI;
-use Streams\Cli\Console\MakeStream;
-use Streams\Cli\Console\ListEntries;
-use Streams\Cli\Console\ListStreams;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Streams\Cli\Console\Inputs\ArrayConsoleInput;
 use Streams\Cli\Console\Inputs\ObjectConsoleInput;
 use Streams\Cli\Console\Inputs\StringConsoleInput;
-use Streams\Cli\Console\StreamsDescribe;
-use Streams\Core\Field\Types\ArrayFieldType;
 
 class CliServiceProvider extends ServiceProvider
 {
@@ -26,11 +16,10 @@ class CliServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Streams\Cli\Console\MakeEntry::class,
-                \Streams\Cli\Console\MakeStream::class,
-                \Streams\Cli\Console\ListEntries::class,
-                \Streams\Cli\Console\ListStreams::class,
-                \Streams\Cli\Console\StreamsDescribe::class,
+                \Streams\Cli\Console\Commands\MakeEntry::class,
+                \Streams\Cli\Console\Commands\ListEntries::class,
+                \Streams\Cli\Console\Commands\ListStreams::class,
+                //\Streams\Cli\Console\Commands\StreamsDescribe::class,
             ]);
         }
     }

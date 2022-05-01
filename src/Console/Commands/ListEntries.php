@@ -1,13 +1,10 @@
 <?php
 
-namespace Streams\Cli\Console;
+namespace Streams\Cli\Console\Commands;
 
-use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Streams\Core\Field\Field;
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use Streams\Core\Criteria\Criteria;
 use Streams\Core\Support\Facades\Streams;
 
 class ListEntries extends Command
@@ -18,12 +15,14 @@ class ListEntries extends Command
      *
      * @var string
      */
-    protected $signature = 'entries:list : List stream entries.
+    protected $signature = 'streams:entries
         {stream : The stream to list entries from.}
         {--query= : Query constraints.}
         {--columns= : Columns to display.}
         {--per-page=15 : Entries per page.}
         {--page= : Page to list.}';
+
+    protected $description = 'Display a table of stream entries.';
 
     public function handle($page = 0)
     {
@@ -71,12 +70,14 @@ class ListEntries extends Command
             foreach ($row as &$value) {
 
                 if (is_string($value)) {
-                    $value = Str::limit($value);
+                    $value = Str::limit($value, 150);
                 }
 
                 if (is_array($value) || is_object($value)) {
                     $value = json_encode($value);
                 }
+
+                $value = wordwrap((string) $value, 75);
             }
 
             $row = array_intersect_key($row, array_flip($headers));
