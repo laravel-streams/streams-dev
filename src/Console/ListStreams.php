@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Dev\Console;
+namespace Streams\Cli\Console;
 
 use Illuminate\Console\Command;
 

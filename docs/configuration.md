@@ -1,7 +1,7 @@
 ---
 title: Configuration
 category: getting_started
-intro: Configuring the DEV.
+intro: Configuring the CLI.
 sort: 2
 enabled: true
 ---
@@ -12,7 +12,7 @@ Published configuration files reside in `config/streams/`.
 
 ``` files
 ├── config/streams/
-│   └── dev.php
+│   └── cli.php
 ```
 
 ### Publishing Configuration
@@ -20,7 +20,7 @@ Published configuration files reside in `config/streams/`.
 Use the following command to publish configuration files.
 
 ```bash
-php artisan vendor:publish --provider=Streams\\Dev\\DevServiceProvider --tag=config
+php artisan vendor:publish --provider=Streams\\Cli\\CliServiceProvider --tag=config
 ```
 
 The above command will copy configuration files from their package location to the directory mentioned above so that you can modify them directly and commit them to your version control system.
@@ -30,25 +30,25 @@ The above command will copy configuration files from their package location to t
 Below are the contents of the published configuration file:
 
 ```php
-// config/streams/dev.php
+// config/streams/cli.php
 
 return [
 
     /*
-     * Determine if the DEV should be enabled.
+     * Determine if the CLI should be enabled.
      *
      * This is disabled by default because
-     * The DEV is public by default.
+     * The CLI is public by default.
      */
-    'enabled' => env('STREAMS_DEV_ENABLED', true),
+    'enabled' => env('STREAMS_CLI_ENABLED', true),
 
     /*
-     * Specify the DEV prefix.
+     * Specify the CLI prefix.
      */
-    'prefix' => env('STREAMS_DEV_PREFIX', 'dev'),
+    'prefix' => env('STREAMS_CLI_PREFIX', 'cli'),
 
     /*
-     * Specify the DEV group middleware.
+     * Specify the CLI group middleware.
      *
      * This is designed to match out of the box
      * "app/Providers/RouteServiceProvider.php"
@@ -57,27 +57,27 @@ return [
      * Changing this value will require
      * adjusting the above files.
      */
-    'middleware' => env('STREAMS_DEV_MIDDLEWARE', 'dev'),
+    'middleware' => env('STREAMS_CLI_MIDDLEWARE', 'cli'),
 
 ];
 ```
 
-### DEV Middleware
+### CLI Middleware
 
-DEV middleware an be configured in your application's HTTP kernel.
+CLI middleware an be configured in your application's HTTP kernel.
 
 ```php
 // app/Http/Kernel.php
 
 protected $middlewareGroups = [
-    'dev' => [
+    'cli' => [
         'throttle:60,1',
         'bindings',
-        Streams\Dev\Http\Middleware\DevCache::class,
+        Streams\Cli\Http\Middleware\CliCache::class,
     ],
 ];
 ```
 
-### DEV Routes File
+### CLI Routes File
 
-The `app/Providers/RouteServiceProvider.php` file typically uses the `dev` middleware group when loading the `routes/dev.php` file. By default this is compatible and routes defined there will be properly prefixed and grouped.
+The `app/Providers/RouteServiceProvider.php` file typically uses the `cli` middleware group when loading the `routes/cli.php` file. By default this is compatible and routes defined there will be properly prefixed and grouped.

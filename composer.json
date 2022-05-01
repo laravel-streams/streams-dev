@@ -1,23 +1,21 @@
 {
-    "name": "streams/dev",
-    "description": "Laravel Streams development tooling.",
+    "name": "streams/cli",
+    "description": "CLI Tooling for Laravel Streams.",
     "authors": [
         {
             "name": "Ryan Thompson",
             "email": "ryan@pyrocms.com"
         }
     ],
-    "require": {
-        "doctrine/dbal": "^3.3"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
-            "Streams\\Dev\\": "src/"
+            "Streams\\Cli\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Streams\\Dev\\Tests\\": "tests/"
+            "Streams\\Cli\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -29,7 +27,7 @@
         },
         "laravel": {
             "providers": [
-                "Streams\\Dev\\DevServiceProvider"
+                "Streams\\Cli\\CliServiceProvider"
             ]
         }
     }

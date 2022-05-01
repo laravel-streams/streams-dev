@@ -1,7 +1,7 @@
 ---
-title: Streams DEV
+title: Streams CLI
 link_title: Introduction
-intro: Laravel Streams development tooling.
+intro: Laravel Streams clielopment tooling.
 enabled: true
 ---
 
@@ -10,11 +10,11 @@ enabled: true
 ### [Installation](installation)
 
 ```bash
-composer require streams/dev
+composer require streams/cli
 ```
 
 ### [Configuration](configuration)
 
 ```bash
-php artisan vendor:publish --provider=Streams\\Dev\\DevServiceProvider --tag=config
+php artisan vendor:publish --provider=Streams\\Cli\\CliServiceProvider --tag=config
 ```
