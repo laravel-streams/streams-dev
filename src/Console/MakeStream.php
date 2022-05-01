@@ -27,9 +27,9 @@ class MakeStream extends Command
 
         parse_str($this->argument('input'), $input);
 
-        $input = new Collection($input);
+        $key = $this->argument('id');
 
-        $key = Arr::get($input, $stream->config('key_name', 'id'));
+        $input = new Collection($input + ['id' => $key]);
 
         foreach ($stream->fields as $field) {
             if (!$input->has($field->handle)) {
