@@ -38,6 +38,7 @@ class DevServiceProvider extends ServiceProvider
         Field::macro('input', function(Command $command, Collection $input) {
             return $command->ask($this->name(), $this->default($input->get($this->handle)));
         });
+        
         // StreamManager::macro('factory', function () {
         //     return $this
         //             ->make($id)
