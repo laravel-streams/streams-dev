@@ -15,6 +15,7 @@ class DevServiceProvider extends ServiceProvider
             $this->commands([
                 \Streams\Dev\Console\MakeEntry::class,
                 \Streams\Dev\Console\MakeStream::class,
+                \Streams\Dev\Console\ListEntries::class,
                 \Streams\Dev\Console\StreamsDescribe::class,
             ]);
         }

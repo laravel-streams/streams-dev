@@ -16,7 +16,7 @@ class MakeEntry extends Command
      *
      * @var string
      */
-    protected $signature = 'make:entry : Create a stream entry.
+    protected $signature = 'entries:make : Make a stream entry.
         {stream : The entry stream.}
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';

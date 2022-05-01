@@ -16,7 +16,7 @@ class MakeStream extends Command
      *
      * @var string
      */
-    protected $signature = 'make:stream
+    protected $signature = 'streams:make : Make a stream.
         {id : The stream id.}
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';
