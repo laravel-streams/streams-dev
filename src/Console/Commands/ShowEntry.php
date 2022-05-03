@@ -17,9 +17,9 @@ class ShowEntry extends Command
     protected $signature = 'entries:show
         {stream : The entry stream.}
         {entry : The entry identifier.}
-        {--show= : Fields to show.}';
+        {--show= : Comma-seperated fields to show.}';
 
-    protected $description = 'Display a table of stream entries.';
+    protected $description = 'Display a single stream entry.';
 
     public function handle($page = 0)
     {
