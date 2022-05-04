@@ -14,6 +14,7 @@ use Illuminate\Support\ServiceProvider;
 use Streams\Cli\Console\Inputs\ArrayConsoleInput;
 use Streams\Cli\Console\Inputs\ObjectConsoleInput;
 use Streams\Cli\Console\Inputs\StringConsoleInput;
+use Streams\Api\Http\Controller\Streams\ShowStream;
 
 class CliServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class CliServiceProvider extends ServiceProvider
                 \Streams\Cli\Console\Commands\MakeEntry::class,
                 \Streams\Cli\Console\Commands\ShowEntry::class,
                 \Streams\Cli\Console\Commands\MakeStream::class,
+                \Streams\Cli\Console\Commands\ShowStream::class,
                 \Streams\Cli\Console\Commands\ListEntries::class,
                 \Streams\Cli\Console\Commands\ListStreams::class,
                 \Streams\Cli\Console\Commands\StreamSchema::class,

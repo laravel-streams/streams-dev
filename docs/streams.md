@@ -13,7 +13,7 @@ If you want to access the data within a configured stream, use the [Entries API]
 
 ## List Streams
 
-Display a paginated list of configured streams:
+Display a paginated list of configured stream:
 
 ```bash
 streams:list
@@ -64,7 +64,7 @@ JSON OUTPUT
 Display a single entry for a configured stream:
 
 ```bash
-entries:show
+streams:show
     {stream : The entry stream.}
     {entry : The entry identifier.}
     {--show= : Comma-seperated fields to show.}c
@@ -74,7 +74,7 @@ entries:show
 #### Response
 
 ```bash
-php artisan entries:show docs api
+php artisan streams:show docs api
 
 +------------+---------------+
 | Field      | Value         |
@@ -88,4 +88,24 @@ php artisan entries:show docs api
 | publish_at |               |
 | body       |               |
 +------------+---------------+
+```
+
+## Stream Schema
+
+Display a JSON schema for the configured stream:
+
+```bash
+streams:schema
+    {stream : The stream ID.}
+```
+
+
+#### Response
+
+```bash
+php artisan streams:schema docs
+
+{
+    ... @todo replace when ready
+}
 ```
