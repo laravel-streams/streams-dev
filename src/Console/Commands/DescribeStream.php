@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
-class StreamsDescribe extends Command
+class DescribeStream extends Command
 {
 
     /**
