@@ -7,9 +7,7 @@
             "email": "ryan@pyrocms.com"
         }
     ],
-    "require": {
-        "goldspecdigital/oooas": "^2.8"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
             "Streams\\Cli\\": "src/"
