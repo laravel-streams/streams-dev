@@ -60,28 +60,46 @@ class CliServiceProvider extends ServiceProvider
             return FieldSchema::class;
         });
 
-        // public function schema(): FieldSchema
+        // public function factory(string $id): EntryFactory
         // {
-        //     $schema = $this->config('schema', $this->getSchemaName());
-
-        //     return new $schema($this);
+        //     return $this
+        //         ->make($id)
+        //         ->factory();
         // }
 
-        // protected function getSchemaName()
+        // public function factory(): EntryFactory
         // {
-        //     return FieldSchema::class;
+        //     return static::once($this->id . __METHOD__, fn () => $this->newFactory());
         // }
 
-        // public function schema(): EntrySchema
+        // protected function newFactory(): EntryFactory
         // {
-        //     return static::once($this->id . __METHOD__, fn () => $this->newSchema());
+        //     $factory  = $this->config('factory', EntryFactory::class);
+
+        //     return new $factory($this);
         // }
 
-        // protected function newSchema(): EntrySchema
+        // public function generate()
         // {
-        //     $schema  = $this->config('schema', EntrySchema::class);
+        //     return $this->generator()->text();
+        // }
 
-        //     return new $schema($this);
+        // public function generator()
+        // {
+        //     // @todo app(this->config('generator))
+        //     return $this->once(__METHOD__, fn () => \Faker\Factory::create());
+        // }
+
+        // public function factory(): Factory
+        // {
+        //     $factory = $this->config('factory', $this->getFactoryName());
+
+        //     return new $factory($this);
+        // }
+
+        // protected function getFactoryName()
+        // {
+        //     return Factory::class;
         // }
 
         StreamManager::macro('schema', function($stream) {
