@@ -28,7 +28,6 @@ class CliServiceProvider extends ServiceProvider
                 \Streams\Cli\Console\Commands\ShowStream::class,
                 \Streams\Cli\Console\Commands\ListEntries::class,
                 \Streams\Cli\Console\Commands\ListStreams::class,
-                \Streams\Cli\Console\Commands\StreamSchema::class,
                 \Streams\Cli\Console\Commands\DescribeStream::class,
             ]);
         }
