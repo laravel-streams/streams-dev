@@ -1,7 +1,7 @@
 ---
-title: Streams CLI
+title: Streams SDK
 link_title: Introduction
-intro: Laravel Streams clielopment tooling.
+intro: Laravel Streams sdkelopment tooling.
 enabled: true
 ---
 
@@ -10,11 +10,11 @@ enabled: true
 ### [Installation](installation)
 
 ```bash
-composer require streams/cli
+composer require streams/sdk
 ```
 
 ### [Configuration](configuration)
 
 ```bash
-php artisan vendor:publish --provider=Streams\\Cli\\CliServiceProvider --tag=config
+php artisan vendor:publish --provider=Streams\\Sdk\\SdkServiceProvider --tag=config
 ```

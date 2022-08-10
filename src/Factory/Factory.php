@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Cli\Factory;
+namespace Streams\Sdk\Factory;
 
 use Faker\Generator;
 use Streams\Core\Field\Field;

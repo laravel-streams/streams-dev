@@ -7,7 +7,7 @@ enabled: true
 
 ## Introduction
 
-Entries represent the data within your configured [Streams](#streams). Use the Entries CLI to interact with streams data.
+Entries represent the data within your configured [Streams](#streams). Use the Entries SDK to interact with streams data.
 
 ## List Entries
 

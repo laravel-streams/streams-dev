@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Cli\Console\Inputs;
+namespace Streams\Sdk\Console\Inputs;
 
 class StringConsoleInput extends ConsoleInput
 {

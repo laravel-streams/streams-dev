@@ -1,7 +1,7 @@
 ---
 title: Configuration
 category: getting_started
-intro: Configuring the CLI.
+intro: Configuring the SDK.
 sort: 2
 enabled: true
 ---
@@ -12,7 +12,7 @@ Published configuration files reside in `config/streams/`.
 
 ``` files
 ├── config/streams/
-│   └── cli.php
+│   └── sdk.php
 ```
 
 ### Publishing Configuration
@@ -20,7 +20,7 @@ Published configuration files reside in `config/streams/`.
 Use the following command to publish configuration files.
 
 ```bash
-php artisan vendor:publish --provider=Streams\\Cli\\CliServiceProvider --tag=config
+php artisan vendor:publish --provider=Streams\\Sdk\\SdkServiceProvider --tag=config
 ```
 
 The above command will copy configuration files from their package location to the directory mentioned above so that you can modify them directly and commit them to your version control system.
@@ -30,25 +30,25 @@ The above command will copy configuration files from their package location to t
 Below are the contents of the published configuration file:
 
 ```php
-// config/streams/cli.php
+// config/streams/sdk.php
 
 return [
 
     /*
-     * Determine if the CLI should be enabled.
+     * Determine if the SDK should be enabled.
      *
      * This is disabled by default because
-     * The CLI is public by default.
+     * The SDK is public by default.
      */
-    'enabled' => env('STREAMS_CLI_ENABLED', true),
+    'enabled' => env('STREAMS_SDK_ENABLED', true),
 
     /*
-     * Specify the CLI prefix.
+     * Specify the SDK prefix.
      */
-    'prefix' => env('STREAMS_CLI_PREFIX', 'cli'),
+    'prefix' => env('STREAMS_SDK_PREFIX', 'sdk'),
 
     /*
-     * Specify the CLI group middleware.
+     * Specify the SDK group middleware.
      *
      * This is designed to match out of the box
      * "app/Providers/RouteServiceProvider.php"
@@ -57,27 +57,27 @@ return [
      * Changing this value will require
      * adjusting the above files.
      */
-    'middleware' => env('STREAMS_CLI_MIDDLEWARE', 'cli'),
+    'middleware' => env('STREAMS_SDK_MIDDLEWARE', 'sdk'),
 
 ];
 ```
 
-### CLI Middleware
+### SDK Middleware
 
-CLI middleware an be configured in your application's HTTP kernel.
+SDK middleware an be configured in your application's HTTP kernel.
 
 ```php
 // app/Http/Kernel.php
 
 protected $middlewareGroups = [
-    'cli' => [
+    'sdk' => [
         'throttle:60,1',
         'bindings',
-        Streams\Cli\Http\Middleware\CliCache::class,
+        Streams\Sdk\Http\Middleware\SdkCache::class,
     ],
 ];
 ```
 
-### CLI Routes File
+### SDK Routes File
 
-The `app/Providers/RouteServiceProvider.php` file typically uses the `cli` middleware group when loading the `routes/cli.php` file. By default this is compatible and routes defined there will be properly prefixed and grouped.
+The `app/Providers/RouteServiceProvider.php` file typically uses the `sdk` middleware group when loading the `routes/sdk.php` file. By default this is compatible and routes defined there will be properly prefixed and grouped.

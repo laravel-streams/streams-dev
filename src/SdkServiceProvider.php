@@ -1,34 +1,34 @@
 <?php
 
-namespace Streams\Cli;
+namespace Streams\Sdk;
 
 use Streams\Core\Field\Field;
 use Streams\Core\Stream\Stream;
 use Illuminate\Support\Facades\App;
-use Streams\Cli\Schema\EntrySchema;
-use Streams\Cli\Schema\FieldSchema;
-use Streams\Cli\Schema\StreamSchema;
+use Streams\Sdk\Schema\EntrySchema;
+use Streams\Sdk\Schema\FieldSchema;
+use Streams\Sdk\Schema\StreamSchema;
 use Illuminate\Support\Facades\Config;
 use Streams\Core\Stream\StreamManager;
 use Illuminate\Support\ServiceProvider;
-use Streams\Cli\Console\Inputs\ArrayConsoleInput;
-use Streams\Cli\Console\Inputs\ObjectConsoleInput;
-use Streams\Cli\Console\Inputs\StringConsoleInput;
+use Streams\Sdk\Console\Inputs\ArrayConsoleInput;
+use Streams\Sdk\Console\Inputs\ObjectConsoleInput;
+use Streams\Sdk\Console\Inputs\StringConsoleInput;
 use Streams\Api\Http\Controller\Streams\ShowStream;
 
-class CliServiceProvider extends ServiceProvider
+class SdkServiceProvider extends ServiceProvider
 {
     public function register()
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Streams\Cli\Console\Commands\MakeEntry::class,
-                \Streams\Cli\Console\Commands\ShowEntry::class,
-                \Streams\Cli\Console\Commands\MakeStream::class,
-                \Streams\Cli\Console\Commands\ShowStream::class,
-                \Streams\Cli\Console\Commands\ListEntries::class,
-                \Streams\Cli\Console\Commands\ListStreams::class,
-                \Streams\Cli\Console\Commands\DescribeStream::class,
+                \Streams\Sdk\Console\Commands\MakeEntry::class,
+                \Streams\Sdk\Console\Commands\ShowEntry::class,
+                \Streams\Sdk\Console\Commands\MakeStream::class,
+                \Streams\Sdk\Console\Commands\ShowStream::class,
+                \Streams\Sdk\Console\Commands\ListEntries::class,
+                \Streams\Sdk\Console\Commands\ListStreams::class,
+                \Streams\Sdk\Console\Commands\DescribeStream::class,
             ]);
         }
     }
@@ -39,11 +39,11 @@ class CliServiceProvider extends ServiceProvider
 
         Field::macro('console', function () {
 
-            if (!App::has("streams.cli.input_types.{$this->type}")) {
-                throw new \Exception("Missing CLI input [{$this->type}] required for field [{$this->handle}] in stream [{$this->stream->id}]");
+            if (!App::has("streams.console.inputs.{$this->type}")) {
+                throw new \Exception("Missing SDK input [{$this->type}] required for field [{$this->handle}] in stream [{$this->stream->id}]");
             }
 
-            return App::make("streams.cli.input_types.{$this->type}", ['field' => $this]);
+            return App::make("streams.console.inputs.{$this->type}", ['field' => $this]);
         });
 
         Stream::macro('schema', function() {
@@ -108,7 +108,7 @@ class CliServiceProvider extends ServiceProvider
 
     protected function registerInputs()
     {
-        $inputs = Config::get('streams.cli.input_types', [
+        $inputs = Config::get('streams.console.inputs', [
             'string' => StringConsoleInput::class,
             'slug' => StringConsoleInput::class,
             'object' => ObjectConsoleInput::class,
@@ -116,7 +116,7 @@ class CliServiceProvider extends ServiceProvider
         ]);
 
         foreach ($inputs as $abstract => $concrete) {
-            $this->app->bind("streams.cli.input_types.{$abstract}", $concrete);
+            $this->app->bind("streams.console.inputs.{$abstract}", $concrete);
         }
     }
 }

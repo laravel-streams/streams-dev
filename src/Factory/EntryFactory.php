@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Cli\Factory;
+namespace Streams\Sdk\Factory;
 
 use Streams\Core\Stream\Stream;
 use Illuminate\Support\Collection;

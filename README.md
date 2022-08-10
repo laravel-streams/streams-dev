@@ -1,3 +1,3 @@
-## Streams CLI
+## Streams SDK
 
-CLI Tooling for Laravel Streams.
+Dev tools for Laravel + Streams.

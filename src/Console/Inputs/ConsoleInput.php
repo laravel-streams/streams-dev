@@ -1,6 +1,6 @@
 <?php
 
-namespace Streams\Cli\Console\Inputs;
+namespace Streams\Sdk\Console\Inputs;
 
 use Streams\Core\Field\Field;
 use Illuminate\Console\Command;

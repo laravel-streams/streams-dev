@@ -37,7 +37,7 @@ Current Page: 1
 +-----------+--------------------+
 | docs      | Laravel Streams    |
 | docs_api  | Streams API        |
-| docs_cli  | CLI Documentation  |
+| docs_sdk  | SDK Documentation  |
 | docs_core | Core Documentation |
 | docs_ui   | Streams UI         |
 +-----------+--------------------+

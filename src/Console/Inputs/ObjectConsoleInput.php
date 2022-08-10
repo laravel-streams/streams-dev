@@ -1,10 +1,10 @@
 <?php
 
-namespace Streams\Cli\Console\Inputs;
+namespace Streams\Sdk\Console\Inputs;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Streams\Cli\Console\Inputs\ConsoleInput;
+use Streams\Sdk\Console\Inputs\ConsoleInput;
 
 class ObjectConsoleInput extends ConsoleInput
 {
