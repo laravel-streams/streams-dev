@@ -1,11 +1,11 @@
 {
-    "name": "streams/sdk",
-    "description": "Dev tools for Laravel + Streams.",
+    "name": "{{ $vendor }}/{{ $name }}",
+    "description": "{{ $description }}",
     "type": "streams-addon",
     "authors": [
         {
-            "name": "Ryan Thompson",
-            "email": "ryan@pyrocms.com"
+            "name": "Your Name",
+            "email": "your@email.com"
         }
     ],
     "require": {
@@ -16,21 +16,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Streams\\Sdk\\": "src/"
+            "{{ $namespace }}\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Streams\\Sdk\\Tests\\": "tests/"
+            "{{ addslashes($namespace) }}\\Tests\\": "tests/"
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "1.x-dev"
-        },
         "laravel": {
             "providers": [
-                "Streams\\Sdk\\SdkServiceProvider"
+                "{{ addslashes($provider) }}"
             ]
         }
     },

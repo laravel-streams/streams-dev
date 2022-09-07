@@ -3,18 +3,13 @@
 namespace Streams\Sdk;
 
 use Streams\Core\Field\Field;
-use Streams\Core\Stream\Stream;
 use Illuminate\Support\Facades\App;
-use Streams\Sdk\Schema\EntrySchema;
-use Streams\Sdk\Schema\FieldSchema;
-use Streams\Sdk\Schema\StreamSchema;
 use Illuminate\Support\Facades\Config;
 use Streams\Core\Stream\StreamManager;
 use Illuminate\Support\ServiceProvider;
 use Streams\Sdk\Console\Inputs\ArrayConsoleInput;
 use Streams\Sdk\Console\Inputs\ObjectConsoleInput;
 use Streams\Sdk\Console\Inputs\StringConsoleInput;
-use Streams\Api\Http\Controller\Streams\ShowStream;
 
 class SdkServiceProvider extends ServiceProvider
 {
@@ -22,6 +17,7 @@ class SdkServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                \Streams\Sdk\Console\Commands\MakeAddon::class,
                 \Streams\Sdk\Console\Commands\MakeEntry::class,
                 \Streams\Sdk\Console\Commands\ShowEntry::class,
                 \Streams\Sdk\Console\Commands\MakeStream::class,
@@ -46,18 +42,18 @@ class SdkServiceProvider extends ServiceProvider
             return App::make("streams.console.inputs.{$this->type}", ['field' => $this]);
         });
 
-        Stream::macro('schema', function() {
-            return new StreamSchema($this);
-        });
+        // Stream::macro('schema', function() {
+        //     return new StreamSchema($this);
+        // });
         
-        Field::macro('schema', function() {
-            $name = $this->getSchemaName();
-            return new $name($this);
-        });
+        // Field::macro('schema', function() {
+        //     $name = $this->getSchemaName();
+        //     return new $name($this);
+        // });
 
-        Field::macro('getSchemaName', function() {
-            return FieldSchema::class;
-        });
+        // Field::macro('getSchemaName', function() {
+        //     return FieldSchema::class;
+        // });
 
         // public function factory(string $id): EntryFactory
         // {
