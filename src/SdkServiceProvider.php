@@ -18,12 +18,13 @@ class SdkServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Streams\Sdk\Console\Commands\MakeAddon::class,
-                // \Streams\Sdk\Console\Commands\MakeEntry::class,
-                \Streams\Sdk\Console\Commands\ShowEntry::class,
-                // \Streams\Sdk\Console\Commands\MakeStream::class,
-                // \Streams\Sdk\Console\Commands\ShowStream::class,
-                // \Streams\Sdk\Console\Commands\ListEntries::class,
-                // \Streams\Sdk\Console\Commands\ListStreams::class,
+                \Streams\Sdk\Console\Commands\MakeEntry::class,
+                \Streams\Sdk\Console\Commands\MakeStream::class,
+                \Streams\Sdk\Console\Commands\StreamsSchema::class,
+                // \Streams\Sdk\Console\Commands\ShowEntry::class,      Necessary?
+                // \Streams\Sdk\Console\Commands\ShowStream::class,     Necessary?
+                // \Streams\Sdk\Console\Commands\ListEntries::class,    Necessary?
+                // \Streams\Sdk\Console\Commands\ListStreams::class,    Necessary?
                 // \Streams\Sdk\Console\Commands\DescribeStream::class,
             ]);
         }

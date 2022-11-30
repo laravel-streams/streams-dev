@@ -2,10 +2,9 @@
 
 namespace Streams\Sdk\Tests\Console\Commands;
 
-use Streams\Testing\TestCase;
-use Illuminate\Support\Facades\Artisan;
+use Streams\Sdk\Tests\SdkTestCase;
 
-class MakeAddonTest extends TestCase
+class MakeAddonTest extends SdkTestCase
 {
 
     public function test_it_makes_addons()

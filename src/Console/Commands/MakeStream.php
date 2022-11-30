@@ -12,7 +12,7 @@ class MakeStream extends Command
      *
      * @var string
      */
-    protected $signature = 'streams:create
+    protected $signature = 'make:stream
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';
 

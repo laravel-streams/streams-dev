@@ -19,9 +19,9 @@ class DescribeStream extends Command
      * @var string
      */
     protected $signature = 'streams:describe
-        {target : The target within the source.}';
+        {target : The target Stream to detect.}';
 
-    protected $description = 'Generate a stream describing the target data source.';
+    protected $description = 'Generate the details of a stream based on it\'s configured source.';
 
     public function handle()
     {

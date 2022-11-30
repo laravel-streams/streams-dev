@@ -4,12 +4,12 @@ namespace Streams\Sdk\Tests\Console\Commands;
 
 use Streams\Sdk\Tests\SdkTestCase;
 
-class ShowEntryTest extends SdkTestCase
+class ListEntriesTest extends SdkTestCase
 {
 
-    public function test_it_can_show_an_entry()
+    public function test_it_can_list_entries()
     {
-        $this->artisan('entries:show', [
+        $this->artisan('entries:list', [
             'stream' => 'films',
             'entry' => 4
         ])->expectsTable([
