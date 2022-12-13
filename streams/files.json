@@ -1,0 +1,86 @@
+{
+    "name": "Files",
+    "handle": "files",
+    "description": "Basic filesystem cache.",
+    "config": {
+        "source": {
+            "format": "json"
+        }
+    },
+    "routes": [
+        {
+            "handle": "view",
+            "uri": "files",
+            "view": "files"
+        },
+        {
+            "handle": "view",
+            "uri": "files\/{id}",
+            "view": "file"
+        }
+    ],
+    "fields": [
+        {
+            "handle": "id",
+            "type": "uuid",
+            "required": true,
+            "unique": true,
+            "config": {
+                "default": true
+            }
+        },
+        {
+            "handle": "path",
+            "type": "string"
+        }
+    ],
+    "ui": {
+        "cp": {
+            "section": {
+                "handle": "files"
+            }
+        },
+        "tables": [
+            {
+                "handle": "default",
+                "columns": [
+                    {
+                        "handle": "path"
+                    }
+                ],
+                "buttons": [
+                    {
+                        "handle": "edit"
+                    },
+                    {
+                        "handle": "view",
+                        "attributes": {
+                            "href": "/files/{entry.id}",
+                            "target": "_blank",
+                            "class": ["a-button", "-secondary"]
+                        }
+                    }
+                ],
+                "config": {
+                    "order_by": [
+                        ["path", "asc"]
+                    ]
+                }
+            }
+        ],
+        "forms": [
+            {
+                "handle": "default",
+                "buttons": [
+                    {
+                        "handle": "cancel",
+                        "class": "-secondary",
+                        "attributes": {
+                            "href": "{cp.section.url}"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

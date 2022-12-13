@@ -25,9 +25,13 @@ class SdkServiceProvider extends ServiceProvider
                 // \Streams\Sdk\Console\Commands\ShowStream::class,     Necessary?
                 // \Streams\Sdk\Console\Commands\ListEntries::class,    Necessary?
                 // \Streams\Sdk\Console\Commands\ListStreams::class,    Necessary?
-                // \Streams\Sdk\Console\Commands\DescribeStream::class,
+                \Streams\Sdk\Console\Commands\DescribeStream::class,
             ]);
         }
+
+        $this->publishes([
+            __DIR__ . '/../streams/files.json' => base_path('streams/files.json'),
+        ], ['examples', 'files-example']);
     }
 
     public function boot()
@@ -42,19 +46,6 @@ class SdkServiceProvider extends ServiceProvider
 
             return App::make("streams.console.inputs.{$this->type}", ['field' => $this]);
         });
-
-        // Stream::macro('schema', function() {
-        //     return new StreamSchema($this);
-        // });
-        
-        // Field::macro('schema', function() {
-        //     $name = $this->getSchemaName();
-        //     return new $name($this);
-        // });
-
-        // Field::macro('getSchemaName', function() {
-        //     return FieldSchema::class;
-        // });
 
         // public function factory(string $id): EntryFactory
         // {
@@ -97,10 +88,6 @@ class SdkServiceProvider extends ServiceProvider
         // {
         //     return Factory::class;
         // }
-
-        StreamManager::macro('schema', function($stream) {
-            return $this->make($stream)->schema();
-        });
     }
 
     protected function registerInputs()
