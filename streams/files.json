@@ -19,7 +19,7 @@
             "view": "file"
         },
         {
-            "handle": "view",
+            "handle": "render",
             "uri": "file/{id}",
             "uses": "App\\Http\\Controllers\\ViewFile"
         }
@@ -94,9 +94,17 @@
                         "handle": "edit"
                     },
                     {
-                        "handle": "view",
+                        "handle": "data",
                         "attributes": {
                             "href": "/files/{entry.id}",
+                            "target": "_blank",
+                            "class": ["a-button", "-secondary"]
+                        }
+                    },
+                    {
+                        "handle": "render",
+                        "attributes": {
+                            "href": "/file/{entry.id}",
                             "target": "_blank",
                             "class": ["a-button", "-secondary"]
                         }
