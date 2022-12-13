@@ -17,6 +17,11 @@
             "handle": "view",
             "uri": "files\/{id}",
             "view": "file"
+        },
+        {
+            "handle": "view",
+            "uri": "file/{id}",
+            "uses": "App\\Http\\Controllers\\ViewFile"
         }
     ],
     "fields": [
