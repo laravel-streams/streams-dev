@@ -5,7 +5,6 @@ namespace Streams\Sdk;
 use Streams\Core\Field\Field;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
-use Streams\Core\Stream\StreamManager;
 use Illuminate\Support\ServiceProvider;
 use Streams\Sdk\Console\Inputs\ArrayConsoleInput;
 use Streams\Sdk\Console\Inputs\ObjectConsoleInput;
