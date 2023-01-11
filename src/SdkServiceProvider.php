@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Streams\Sdk\Console\Inputs\ArrayConsoleInput;
+use Streams\Sdk\Console\Inputs\IntegerConsoleInput;
 use Streams\Sdk\Console\Inputs\ObjectConsoleInput;
 use Streams\Sdk\Console\Inputs\StringConsoleInput;
 
@@ -94,6 +95,9 @@ class SdkServiceProvider extends ServiceProvider
         $inputs = Config::get('streams.console.inputs', [
             'string' => StringConsoleInput::class,
             'slug' => StringConsoleInput::class,
+            'email' => StringConsoleInput::class,
+            'hash' => StringConsoleInput::class,
+            'integer' => IntegerConsoleInput::class,
             'object' => ObjectConsoleInput::class,
             'array' => ArrayConsoleInput::class,
         ]);

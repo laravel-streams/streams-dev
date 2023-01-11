@@ -16,7 +16,7 @@ class MakeEntry extends Command
      *
      * @var string
      */
-    protected $signature = 'entries:create
+    protected $signature = 'make:entry
         {stream : The entry stream.}
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';
@@ -39,25 +39,11 @@ class MakeEntry extends Command
             }
         }
 
-        if (!$key || !$instance = $stream->repository()->find($key)) {
-            $instance = $stream->repository()->newInstance($input->all());
-        }
-
-        if ($key && $instance) {
-            foreach ($input as $key => $value) {
-                $instance->{$key} = $value;
-            }
-        }
-
         $fresh = !$this->option('update');
 
-        $validator = $stream->validator($instance, $fresh);
+        $validator = $stream->validator($input->all(), $fresh);
 
         $valid = $validator->passes();
-
-        if ($valid) {
-            $instance->save();
-        }
 
         if (!$valid) {
 
@@ -71,6 +57,18 @@ class MakeEntry extends Command
 
             return;
         }
+
+        if (!$key || !$instance = $stream->repository()->find($key)) {
+            $instance = $stream->repository()->newInstance($input->all());
+        }
+
+        if ($key && $instance) {
+            foreach ($input as $key => $value) {
+                $instance->{$key} = $value;
+            }
+        }
+
+        $instance->save();
 
         $this->info(json_encode($instance));
     }

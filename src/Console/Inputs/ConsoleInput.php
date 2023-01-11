@@ -14,9 +14,15 @@ class ConsoleInput
 
     public function ask(Command $command, Collection $input)
     {
+        if ($input->has($this->field->handle)) {
+            $default = $input->get($this->field->handle);
+        } else {
+            $default = $this->field->config('default');
+        }
+
         return $command->ask(
             $this->field->name(),
-            $this->field->default($input->get($this->field->handle))
+            $this->field->default($default)
         );
     }
 }
