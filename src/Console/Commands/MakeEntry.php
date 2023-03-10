@@ -10,16 +10,11 @@ use Streams\Core\Support\Facades\Streams;
 
 class MakeEntry extends Command
 {
-
-    /**
-     * @inheritDoc
-     *
-     * @var string
-     */
     protected $signature = 'make:entry
         {stream : The entry stream.}
         {input? : Query string formatted attributes.}
         {--update : Update if exists.}';
+        // {--generate : Generate attributes.}';
 
     protected $description = 'Make a stream entry.';
 
