@@ -6,10 +6,16 @@ use Streams\Core\Field\Field;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Streams\Sdk\Console\Commands\MakeAddon;
+use Streams\Sdk\Console\Commands\MakeEntry;
+use Streams\Sdk\Console\Commands\MakeStream;
+use Streams\Sdk\Console\Commands\StreamsSchema;
 use Streams\Sdk\Console\Inputs\ArrayConsoleInput;
-use Streams\Sdk\Console\Inputs\IntegerConsoleInput;
 use Streams\Sdk\Console\Inputs\ObjectConsoleInput;
+use Streams\Sdk\Console\Inputs\SelectConsoleInput;
 use Streams\Sdk\Console\Inputs\StringConsoleInput;
+use Streams\Sdk\Console\Inputs\BooleanConsoleInput;
+use Streams\Sdk\Console\Inputs\IntegerConsoleInput;
 
 class SdkServiceProvider extends ServiceProvider
 {
@@ -25,7 +31,7 @@ class SdkServiceProvider extends ServiceProvider
                 // \Streams\Sdk\Console\Commands\ShowStream::class,     Necessary?
                 // \Streams\Sdk\Console\Commands\ListEntries::class,    Necessary?
                 // \Streams\Sdk\Console\Commands\ListStreams::class,    Necessary?
-                \Streams\Sdk\Console\Commands\DescribeStream::class,
+                //\Streams\Sdk\Console\Commands\DescribeStream::class,
             ]);
         }
 
@@ -100,6 +106,9 @@ class SdkServiceProvider extends ServiceProvider
             'integer' => IntegerConsoleInput::class,
             'object' => ObjectConsoleInput::class,
             'array' => ArrayConsoleInput::class,
+            'enum' => SelectConsoleInput::class,
+            'select' => SelectConsoleInput::class,
+            'boolean' => BooleanConsoleInput::class,
         ]);
 
         foreach ($inputs as $abstract => $concrete) {

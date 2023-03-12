@@ -2,28 +2,37 @@
 
 namespace Streams\Sdk\Console\Commands;
 
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\View;
 
 class MakeStream extends Command
 {
 
-    /**
-     * @inheritDoc
-     *
-     * @var string
-     */
-    protected $signature = 'make:stream
-        {input? : Query string formatted attributes.}
-        {--update : Update if exists.}';
+    // @todo this is temporary
+    // needs to go through make:entry
+    // because it may not be flat-file.
+    protected $signature = 'make:stream {id}';
 
-    protected $description = 'List registered streams.';
+    protected $description = 'Create a stub stream.';
 
     public function handle()
     {
-        $this->call('entries:create', [
-            'stream' => 'core.streams',
-            'input' => $this->argument('input'),
-            '--update' => $this->option('update'),
+        $id = $this->argument('id');
+
+        $contents = file_get_contents(__DIR__ . '/stubs/stream.stub');
+
+        $contents = View::parse($contents, [
+            'id' => $id,
+            'name' => ucwords(str_replace(['-', '_'], ' ', $id)),
         ]);
+
+        file_put_contents(
+            $path = base_path("streams/{$id}.json"),
+            $contents,
+            JSON_PRETTY_PRINT
+        );
+
+        $this->info("Stream created: {$path}");
     }
 }
