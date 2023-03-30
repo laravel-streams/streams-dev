@@ -99,6 +99,7 @@ class SdkServiceProvider extends ServiceProvider
     protected function registerInputs()
     {
         $inputs = Config::get('streams.console.inputs', [
+            'uuid' => StringConsoleInput::class,
             'string' => StringConsoleInput::class,
             'slug' => StringConsoleInput::class,
             'email' => StringConsoleInput::class,
@@ -109,6 +110,10 @@ class SdkServiceProvider extends ServiceProvider
             'enum' => SelectConsoleInput::class,
             'select' => SelectConsoleInput::class,
             'boolean' => BooleanConsoleInput::class,
+
+            'datetime' => StringConsoleInput::class,
+            'date' => StringConsoleInput::class,
+            'time' => StringConsoleInput::class,
         ]);
 
         foreach ($inputs as $abstract => $concrete) {
