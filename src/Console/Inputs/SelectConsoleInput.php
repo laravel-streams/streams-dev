@@ -18,7 +18,7 @@ class SelectConsoleInput extends ConsoleInput
 
         return $command->choice(
             $this->field->name(),
-            array_flip($this->field->options()),
+            $this->field->options(),
             $this->field->default($default)
         );
     }
